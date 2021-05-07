@@ -56,7 +56,7 @@ proc get_acl_ints {} {
     set acl [acl_list]
 
     # Compare intf_list with acl_list; if lengths don't match, throw error
-    if {[llength $int eq llength $acl]} {
+    if {[llength $int] eq [llength $acl]} {
         set length [llength $int]
     } else {
         # Throw error and terminate script
