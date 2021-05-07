@@ -52,12 +52,12 @@ proc acl_list {} {
 proc get_acl_ints {} {    
     # Returns list of interface names to switch desired ACL is applied
     set result ""
-    set int [int_list]
+    set int [intf_list]
     set acl [acl_list]
 
     # Compare intf_list with acl_list; if lengths don't match, throw error
-    if {[llength [intf_list] eq llength [acl_list]]} {
-        set length llength [intf_list]
+    if {[llength $int eq llength $acl]} {
+        set length [llength $int]
     } else {
         # Throw error and terminate script
     }
