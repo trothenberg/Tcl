@@ -10,9 +10,10 @@ set errorInfo ""
 set obj_group_name "local_ips"
 set acl_name "external_acl"
 set int_br [exec "show ip interface brief"]
-###########
 
+##########
 #Functions
+##########
 proc get_intf_names {} {
     # Returns list of every interface on device, regardless \
     # of whether or not it has an IP address assigned.
@@ -78,7 +79,7 @@ ios_config "ip access-list resequence $acl_name 10 10"
 
 # Create new rule for object group local_ips
 # Putting new rule at beginning for now, but it might make more sense at the end \
-# because
+# in case there are deny entries that need to process first
 ios_config "ip access-list extended $acl_name seq 5 permit ip any object-group $obj_group_name"
 
 # Re-apply ACL acl_ext to every interface in array acl_int
