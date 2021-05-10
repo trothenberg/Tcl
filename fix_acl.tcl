@@ -31,13 +31,13 @@ proc get_intf_ips {} {
 
 proc get_intf_conf {int} {
     # Returns running config for specific interface
-    return [exec "show running-config interface $int"]
+    return [exec "show running-config interface $int | include $acl_name in"]
 }
 
 proc check_acl {conf} {
     # Checks if $acl_name is applied to interface
     # in the inbound direction
-    return [string match "*$acl_name in*" $conf]
+    return [string match "*access-group $acl_name in" $conf]
 }
 
 proc acl_ints {int_list} {
